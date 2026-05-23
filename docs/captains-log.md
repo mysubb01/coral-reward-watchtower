@@ -91,11 +91,16 @@ npm run demo
 
 The demo performs four checks:
 
-1. Generate `.coral-local/reward-signals.yaml`.
-2. Lint the Coral source spec.
-3. Add and test the source.
-4. Run a SQL triage query.
-5. Run a SQL join query that combines candidates, evidence, and next actions.
+1. Validate package/data JSON and JSONL.
+2. Generate `.coral-local/reward-signals.yaml`.
+3. Lint the Coral source spec.
+4. Add and test the source.
+5. Run a SQL triage query.
+6. Run a SQL join query that combines candidates, evidence, and next actions.
+
+The public repository also runs the same proof in GitHub Actions:
+
+https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 
 The query:
 

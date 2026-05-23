@@ -16,6 +16,7 @@ Suggested project fields:
 - Track: Personal Agent, or Captain's Log / Showcase special bounty
 - Repo: https://github.com/mysubb01/coral-reward-watchtower
 - Guide: https://mysubb01.github.io/coral-reward-watchtower/
+- CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 - Short description: Local-first Coral project that ranks public reward, prize, and bounty leads with SQL so agents avoid spammy or legally blocked work.
 - Built with: Coral CLI, Coral custom JSONL source, SQL, Node.js
 - Demo command: `npm run demo`
@@ -27,6 +28,7 @@ I built Coral Reward Watchtower, a local-first reward triage layer for agents.
 
 Repo: https://github.com/mysubb01/coral-reward-watchtower
 Guide: https://mysubb01.github.io/coral-reward-watchtower/
+CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 
 The problem: public reward and bounty leads are noisy. Some are cash-only, token-based, account-gated, already crowded, or blocked by legal/user actions like CLA signing.
 
@@ -62,5 +64,6 @@ A local-first reward triage layer that exposes public bounty/prize leads, eviden
 
 Repo: https://github.com/mysubb01/coral-reward-watchtower
 Guide: https://mysubb01.github.io/coral-reward-watchtower/
+CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 Demo: npm run demo
 ```

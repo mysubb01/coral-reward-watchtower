@@ -1,0 +1,35 @@
+name: Coral Demo
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  demo:
+    name: Validate Coral reward triage demo
+    runs-on: macos-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Coral CLI
+        run: brew install withcoral/tap/coral
+
+      - name: Validate JSON and JSONL data
+        run: npm run validate
+
+      - name: Run fallback ranker
+        run: npm run rank
+
+      - name: Run Coral SQL demo
+        run: npm run demo

@@ -1,5 +1,7 @@
 # Coral Reward Watchtower
 
+[![Coral Demo](https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml/badge.svg)](https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml)
+
 Local-first reward triage for builders who need to decide which public prize, bounty, or voucher path is worth acting on next.
 
 This is a fresh Coral hackathon build. It turns messy reward leads into local JSONL tables, exposes them through a Coral custom source, then ranks candidates and joins them with evidence/action rows through SQL. The goal is to keep agents away from noisy, spam-prone bounty threads and toward verifiable, ethical work.
@@ -43,11 +45,12 @@ npm run demo
 
 This runs:
 
-1. Generate a local Coral source spec with absolute file paths.
-2. Lint the Coral source.
-3. Add and test the source.
-4. Query the ranked candidate table.
-5. Join candidate rows with evidence and account-owner/agent action rows.
+1. Validate JSON and JSONL files.
+2. Generate a local Coral source spec with absolute file paths.
+3. Lint the Coral source.
+4. Add and test the source.
+5. Query the ranked candidate table.
+6. Join candidate rows with evidence and account-owner/agent action rows.
 
 If Coral is unavailable, use the deterministic fallback:
 
@@ -63,7 +66,9 @@ npm run rank
 - `coral/reward-signals.template.yaml`: Coral source spec template
 - `sql/triage.sql`: example Coral SQL query
 - `scripts/generate-coral-spec.mjs`: creates the local Coral spec
+- `scripts/validate-jsonl.mjs`: validates local package/data files
 - `scripts/rank-candidates.mjs`: fallback ranker without Coral
+- `.github/workflows/coral-demo.yml`: remote CI proof that the demo runs
 - `docs/captains-log.md`: shareable end-to-end build guide
 - `submission/captains-log.md`: ready-to-post hackathon write-up
 - `submission/demo-script.md`: short demo recording script

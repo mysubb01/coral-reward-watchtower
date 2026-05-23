@@ -30,7 +30,7 @@ Guide: https://mysubb01.github.io/coral-reward-watchtower/
 
 The problem: public reward and bounty leads are noisy. Some are cash-only, token-based, account-gated, already crowded, or blocked by legal/user actions like CLA signing.
 
-The Coral part: I normalize reward candidates into local JSONL, expose them as `reward_signals.candidates` through a Coral custom source, and query them with SQL:
+The Coral part: I normalize reward candidates, source evidence, and next actions into local JSONL tables, expose them through a Coral custom source, and query them with SQL:
 
 ```sql
 SELECT id, title, reward_type, reward_value, verdict, fit_score, next_action
@@ -40,6 +40,8 @@ LIMIT 6;
 ```
 
 Current result: the query ranks a live HarnessClaw JD-card PR first, then this Coral hackathon path for hardware/voucher rewards, while skipping cash-only or crowded bounty leads.
+
+It also runs a join across candidates, evidence, and actions so the agent can see which steps are safe for automation and which steps belong to the account owner.
 
 Run:
 
@@ -56,7 +58,7 @@ What I learned: Coral is useful even for small local datasets because it makes a
 ```text
 Built Coral Reward Watchtower for the Coral hackathon:
 
-A local-first reward triage layer that exposes public bounty/prize leads as a Coral SQL table, so agents can rank real opportunities and avoid spammy, cash-only, crowded, or legally blocked tasks.
+A local-first reward triage layer that exposes public bounty/prize leads, evidence, and next actions as Coral SQL tables, so agents can rank real opportunities and avoid spammy, cash-only, crowded, or legally blocked tasks.
 
 Repo: https://github.com/mysubb01/coral-reward-watchtower
 Guide: https://mysubb01.github.io/coral-reward-watchtower/

@@ -2,7 +2,7 @@
 
 This guide shows how to build a small local-first reward triage agent with Coral. The project helps a coding agent decide which public reward, bounty, prize, or voucher path is worth acting on next without jumping straight into spammy issue comments or low-quality pull requests.
 
-The result is intentionally modest: a JSONL dataset, a Coral custom source spec, a SQL query, and a fallback Node.js ranker. The value is in making the decision process inspectable before the agent acts.
+The result is intentionally modest: three JSONL datasets, a Coral custom source spec, SQL queries, and a fallback Node.js ranker. The value is in making the decision process inspectable before the agent acts.
 
 Repository: https://github.com/mysubb01/coral-reward-watchtower
 
@@ -48,11 +48,16 @@ The core dataset is `data/reward-signals.jsonl`. Each line is one candidate:
 
 The fields are deliberately simple. `verdict`, `fit_score`, `risk`, and `next_action` are the decision surface. They let an agent explain why it should pursue, review, or skip a candidate.
 
+Two companion tables keep the decision auditable:
+
+- `data/evidence.jsonl`: observed source evidence for each candidate.
+- `data/actions.jsonl`: next actions, split between `agent` and `account-owner`.
+
 ## Add A Coral Source
 
 The source template lives at `coral/reward-signals.template.yaml`.
 
-It defines a JSONL-backed source named `reward_signals` with one table:
+It defines a JSONL-backed source named `reward_signals` with three tables:
 
 ```yaml
 name: reward_signals
@@ -64,7 +69,8 @@ test_queries:
   - SELECT id, reward_type, fit_score FROM reward_signals.candidates WHERE verdict = 'pursue' ORDER BY fit_score DESC LIMIT 3
 tables:
   - name: candidates
-    description: Reward candidates normalized for local-first agent triage
+  - name: evidence
+  - name: actions
 ```
 
 Coral source specs need an absolute file path for local JSONL. To keep the repo portable, the committed template uses a placeholder and `scripts/generate-coral-spec.mjs` writes a local generated file under `.coral-local/`.
@@ -89,6 +95,7 @@ The demo performs four checks:
 2. Lint the Coral source spec.
 3. Add and test the source.
 4. Run a SQL triage query.
+5. Run a SQL join query that combines candidates, evidence, and next actions.
 
 The query:
 
@@ -119,6 +126,30 @@ cognitive-os-5            usd-bounty           skip    31
 
 This output is useful because it does not hide constraints. The top live task is valuable, but blocked by CLA signing. The Coral hackathon path is promising, but requires user-controlled registration and social/Discord submission. Cash-only or crowded USD bounties are explicitly skipped.
 
+The second query joins the policy and the proof:
+
+```sql
+SELECT
+  c.id,
+  c.verdict,
+  c.fit_score,
+  e.evidence_type,
+  e.confidence,
+  a.owner,
+  a.action_type,
+  a.action
+FROM reward_signals.candidates c
+JOIN reward_signals.evidence e
+  ON c.id = e.candidate_id
+JOIN reward_signals.actions a
+  ON c.id = a.candidate_id
+WHERE c.verdict IN ('pursue', 'review')
+ORDER BY c.fit_score DESC, a.priority ASC, e.confidence DESC
+LIMIT 12;
+```
+
+This is where Coral becomes more than a local file reader. The agent sees the lead, the source evidence, and whether the next action belongs to the agent or the human account owner in one query.
+
 ## Why Coral Instead Of A Script Only?
 
 The fallback script is useful:
@@ -130,7 +161,7 @@ npm run rank
 But the Coral path has two advantages:
 
 1. The data is queryable by any agent that can use Coral over CLI or MCP.
-2. The policy can grow into joins across sources later.
+2. The policy already joins local source tables and can grow into richer live sources later.
 
 For example, the next version can join local candidate rows with GitHub pull request state, issue comments, Discord checklist status, or a private submission log.
 

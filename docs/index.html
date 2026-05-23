@@ -200,8 +200,9 @@
       <p class="eyebrow">Coral Hackathon Captain's Log</p>
       <h1>Reward triage before the agent acts.</h1>
       <p class="lede">
-        Coral Reward Watchtower turns public prize, voucher, gift-card, and bounty leads into a
-        local SQL table, so an agent can rank opportunities without creating noise.
+        Coral Reward Watchtower turns public prize, voucher, gift-card, and bounty leads into
+        local SQL tables, so an agent can join candidates with evidence and next actions before
+        creating noise.
       </p>
       <div class="actions">
         <a class="button primary" href="https://github.com/mysubb01/coral-reward-watchtower">View Repo</a>
@@ -220,15 +221,16 @@
           </p>
           <p>
             This project keeps the policy visible. Each candidate has a reward type, status, risk,
-            verdict, score, and next action.
+            verdict, score, evidence rows, and next-action owners.
           </p>
         </div>
         <pre><code>npm run demo
 coral source lint .coral-local/reward-signals.yaml
 coral source test reward_signals
-coral sql "SELECT id, verdict, fit_score
-FROM reward_signals.candidates
-ORDER BY fit_score DESC"</code></pre>
+coral sql "SELECT c.id, e.evidence_type, a.action_type
+FROM reward_signals.candidates c
+JOIN reward_signals.evidence e ON c.id = e.candidate_id
+JOIN reward_signals.actions a ON c.id = a.candidate_id"</code></pre>
       </section>
 
       <section class="band grid">
@@ -276,13 +278,14 @@ ORDER BY fit_score DESC"</code></pre>
         <div>
           <h2>Why Coral</h2>
           <p>
-            The JSONL file could be ranked by a script, but Coral makes it queryable by agents
-            through the same local SQL surface they can use for richer sources later.
+            The JSONL files could be ranked by a script, but Coral makes them queryable and
+            joinable by agents through the same local SQL surface they can use for richer sources later.
           </p>
         </div>
         <ul>
-          <li>Local JSONL source spec</li>
+          <li>Three-table local JSONL source spec</li>
           <li>Declared Coral validation queries</li>
+          <li>Candidate/evidence/action joins</li>
           <li>Portable generated source file</li>
           <li>Deterministic fallback ranker</li>
           <li>No private account data in the repo</li>

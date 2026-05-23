@@ -2,7 +2,7 @@
 
 Local-first reward triage for builders who need to decide which public prize, bounty, or voucher path is worth acting on next.
 
-This is a fresh Coral hackathon build. It turns messy reward leads into a small JSONL dataset, exposes it through a Coral custom source, then ranks candidates with SQL and a deterministic fallback script. The goal is to keep agents away from noisy, spam-prone bounty threads and toward verifiable, ethical work.
+This is a fresh Coral hackathon build. It turns messy reward leads into local JSONL tables, exposes them through a Coral custom source, then ranks candidates and joins them with evidence/action rows through SQL. The goal is to keep agents away from noisy, spam-prone bounty threads and toward verifiable, ethical work.
 
 ## Why This Exists
 
@@ -47,6 +47,7 @@ This runs:
 2. Lint the Coral source.
 3. Add and test the source.
 4. Query the ranked candidate table.
+5. Join candidate rows with evidence and account-owner/agent action rows.
 
 If Coral is unavailable, use the deterministic fallback:
 
@@ -57,6 +58,8 @@ npm run rank
 ## Files
 
 - `data/reward-signals.jsonl`: normalized reward candidates
+- `data/evidence.jsonl`: source evidence supporting each candidate verdict
+- `data/actions.jsonl`: next actions split by agent-owned and account-owner-owned work
 - `coral/reward-signals.template.yaml`: Coral source spec template
 - `sql/triage.sql`: example Coral SQL query
 - `scripts/generate-coral-spec.mjs`: creates the local Coral spec
@@ -74,7 +77,7 @@ Pirates of the Coral-bean has non-cash/hardware/voucher paths:
 - Captain's Log: Keychron mechanical keyboard
 - Showcase Reward: Claude Max 5x 1-month vouchers for the best 50 showcases
 
-This project is strongest for the Captain's Log or Showcase lane because it is small, practical, and directly demonstrates why SQL-shaped agent data beats ad hoc wrappers.
+This project is strongest for the Captain's Log or Showcase lane because it is small, practical, and directly demonstrates why SQL-shaped agent data and joins beat ad hoc wrappers.
 
 ## Shareable Guide
 

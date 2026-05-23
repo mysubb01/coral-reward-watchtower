@@ -5,6 +5,7 @@ backend: jsonl
 test_queries:
   - SELECT id, title FROM reward_signals.candidates LIMIT 1
   - SELECT id, reward_type, fit_score FROM reward_signals.candidates WHERE verdict = 'pursue' ORDER BY fit_score DESC LIMIT 3
+  - SELECT c.id, e.evidence_type, a.action_type FROM reward_signals.candidates c JOIN reward_signals.evidence e ON c.id = e.candidate_id JOIN reward_signals.actions a ON c.id = a.candidate_id WHERE c.verdict = 'pursue' LIMIT 5
 tables:
   - name: candidates
     description: Reward candidates normalized for local-first agent triage
@@ -38,3 +39,39 @@ tables:
         type: Utf8
       - name: next_action
         type: Utf8
+  - name: evidence
+    description: Evidence rows that justify candidate verdicts and risk notes
+    source:
+      location: file://__PROJECT_ROOT__/data/
+      glob: evidence.jsonl
+    columns:
+      - name: candidate_id
+        type: Utf8
+      - name: evidence_type
+        type: Utf8
+      - name: evidence_url
+        type: Utf8
+      - name: claim
+        type: Utf8
+      - name: observed_at
+        type: Utf8
+      - name: confidence
+        type: Utf8
+  - name: actions
+    description: Next actions split by agent-owned and account-owner-owned work
+    source:
+      location: file://__PROJECT_ROOT__/data/
+      glob: actions.jsonl
+    columns:
+      - name: candidate_id
+        type: Utf8
+      - name: owner
+        type: Utf8
+      - name: action_type
+        type: Utf8
+      - name: action
+        type: Utf8
+      - name: blocked_by_user_account
+        type: Boolean
+      - name: priority
+        type: Int64

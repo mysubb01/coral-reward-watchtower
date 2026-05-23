@@ -1,0 +1,9 @@
+{"candidate_id":"harnessclaw-pr50","owner":"account-owner","action_type":"legal-unblock","action":"Sign HarnessClaw CLA and re-run the license/cla check","blocked_by_user_account":true,"priority":1}
+{"candidate_id":"harnessclaw-pr50","owner":"agent","action_type":"monitor","action":"After CLA clears, monitor maintainer review and respond narrowly to requested changes","blocked_by_user_account":false,"priority":2}
+{"candidate_id":"coral-hackathon-showcase","owner":"account-owner","action_type":"register","action":"Register for Pirates of the Coral-bean from the official WeMakeDevs page","blocked_by_user_account":true,"priority":1}
+{"candidate_id":"coral-hackathon-showcase","owner":"agent","action_type":"polish","action":"Keep improving the Coral SQL join demo and evidence surface during the build window","blocked_by_user_account":false,"priority":2}
+{"candidate_id":"coral-hackathon-showcase","owner":"account-owner","action_type":"publish","action":"Post the GitHub Pages guide in Coral Discord #how-i-coral and one social platform","blocked_by_user_account":true,"priority":3}
+{"candidate_id":"agent-academy-hackathon","owner":"account-owner","action_type":"account-check","action":"Only proceed if Microsoft product and prize-account requirements are acceptable","blocked_by_user_account":true,"priority":4}
+{"candidate_id":"dev-finish-up-a-thon","owner":"agent","action_type":"skip","action":"Skip while the user prefers non-cash/non-dollar paths","blocked_by_user_account":false,"priority":9}
+{"candidate_id":"cognitive-os-5","owner":"agent","action_type":"skip","action":"Skip unless the maintainer rejects current submissions and clarifies payout","blocked_by_user_account":false,"priority":9}
+{"candidate_id":"open-collective-gift-card","owner":"agent","action_type":"recheck","action":"Recheck later for open bounty-labeled issues with gift-card fallback","blocked_by_user_account":false,"priority":6}

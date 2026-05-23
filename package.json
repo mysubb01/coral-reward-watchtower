@@ -6,6 +6,8 @@
   "scripts": {
     "prepare:coral": "node scripts/generate-coral-spec.mjs",
     "rank": "node scripts/rank-candidates.mjs",
-    "demo": "npm run prepare:coral && coral source lint .coral-local/reward-signals.yaml && coral source add --file .coral-local/reward-signals.yaml && coral source test reward_signals && coral sql \"SELECT id, title, reward_type, reward_value, verdict, fit_score, next_action FROM reward_signals.candidates ORDER BY fit_score DESC LIMIT 6\""
+    "demo": "npm run prepare:coral && coral source lint .coral-local/reward-signals.yaml && coral source add --file .coral-local/reward-signals.yaml && coral source test reward_signals && npm run demo:rank && npm run demo:join",
+    "demo:rank": "coral sql \"SELECT id, title, reward_type, reward_value, verdict, fit_score, next_action FROM reward_signals.candidates ORDER BY fit_score DESC LIMIT 6\"",
+    "demo:join": "coral sql \"SELECT c.id, c.verdict, c.fit_score, e.evidence_type, e.confidence, a.owner, a.action_type, a.action FROM reward_signals.candidates c JOIN reward_signals.evidence e ON c.id = e.candidate_id JOIN reward_signals.actions a ON c.id = a.candidate_id WHERE c.verdict IN ('pursue', 'review') ORDER BY c.fit_score DESC, a.priority ASC, e.confidence DESC LIMIT 12\""
   }
 }

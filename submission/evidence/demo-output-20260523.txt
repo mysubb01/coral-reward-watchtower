@@ -1,0 +1,87 @@
+
+> coral-reward-watchtower@0.1.0 demo
+> npm run validate && npm run prepare:coral && coral source lint .coral-local/reward-signals.yaml && coral source add --file .coral-local/reward-signals.yaml && coral source test reward_signals && npm run demo:rank && npm run demo:join
+
+
+> coral-reward-watchtower@0.1.0 validate
+> node scripts/validate-jsonl.mjs
+
+data/reward-signals.jsonl: 6 rows ok
+data/evidence.jsonl: 7 rows ok
+data/actions.jsonl: 9 rows ok
+
+> coral-reward-watchtower@0.1.0 prepare:coral
+> node scripts/generate-coral-spec.mjs
+
+Wrote /Users/wy/Github-repos/coral-reward-watchtower/.coral-local/reward-signals.yaml
+Manifest is valid
+Added source reward_signals
+
+  ✓ reward_signals connected successfully
+
+    reward_signals (3 tables)
+    ├─ actions
+    ├─ candidates
+    └─ evidence
+    Query tests
+    3 declared · 3 passed · 0 failed
+
+    ✓ SELECT id, title FROM reward_signals.candidates LIMIT 1
+      1 row
+
+    ✓ SELECT id, reward_type, fit_score FROM reward_signals.candidates WHERE verdict = 'pursue' ORDER BY fit_score DESC LIMIT 3
+      2 rows
+
+    ✓ SELECT c.id, e.evidence_type, a.action_type FROM reward_signals.candidates c JOIN reward_signals.evidence e ON c.id = e.candidate_id JOIN reward_signals.actions a ON c.id = a.candidate_id WHERE c.verdict = 'pursue' LIMIT 5
+      5 rows
+
+
+  ✓ reward_signals connected successfully
+
+    reward_signals (3 tables)
+    ├─ actions
+    ├─ candidates
+    └─ evidence
+    Query tests
+    3 declared · 3 passed · 0 failed
+
+    ✓ SELECT id, title FROM reward_signals.candidates LIMIT 1
+      1 row
+
+    ✓ SELECT id, reward_type, fit_score FROM reward_signals.candidates WHERE verdict = 'pursue' ORDER BY fit_score DESC LIMIT 3
+      2 rows
+
+    ✓ SELECT c.id, e.evidence_type, a.action_type FROM reward_signals.candidates c JOIN reward_signals.evidence e ON c.id = e.candidate_id JOIN reward_signals.actions a ON c.id = a.candidate_id WHERE c.verdict = 'pursue' LIMIT 5
+      5 rows
+
+
+> coral-reward-watchtower@0.1.0 demo:rank
+> coral sql "SELECT id, title, reward_type, reward_value, verdict, fit_score, next_action FROM reward_signals.candidates ORDER BY fit_score DESC LIMIT 6"
+
++---------------------------+-----------------------------------------------------+---------------------------+------------------------------------------------------------+---------+-----------+----------------------------------------------------------------------------------------+
+| id                        | title                                               | reward_type               | reward_value                                               | verdict | fit_score | next_action                                                                            |
++---------------------------+-----------------------------------------------------+---------------------------+------------------------------------------------------------+---------+-----------+----------------------------------------------------------------------------------------+
+| harnessclaw-pr50          | HarnessClaw provider template fix                   | jd-card                   | CNY 100 equivalent JD card                                 | pursue  | 93        | Sign CLA, recheck license/cla, then monitor maintainer review                          |
+| coral-hackathon-showcase  | Pirates of the Coral-bean showcase or Captain's Log | hardware-or-voucher       | MacBook Neo, iPad, Keychron keyboard, Claude Max vouchers  | pursue  | 86        | Register, continue polishing during the official window, then submit showcase/write-up |
+| agent-academy-hackathon   | Agent Academy Hackathon                             | microsoft-store-gift-card | Track prizes from $500 to $1500 Microsoft Store Gift Cards | review  | 74        | Prepare architecture and demo only if account/licensing path is available              |
+| open-collective-gift-card | Open Collective bounty gift-card fallback           | open-collective-gift-card | Gift Card possible when invoice is unavailable             | review  | 52        | Recheck later for open bounty-labeled issues                                           |
+| dev-finish-up-a-thon      | GitHub Finish-Up-A-Thon Challenge on DEV            | cash-and-badge            | 10 x $300 USD plus DEV++ membership and badge              | skip    | 48        | Skip unless user wants cash-prize contest path                                         |
+| cognitive-os-5            | Cognitive-OS AGI architecture proposal bounty       | usd-bounty                | $3000 USD                                                  | skip    | 31        | Do not enter unless maintainer rejects current submissions and clarifies payout        |
++---------------------------+-----------------------------------------------------+---------------------------+------------------------------------------------------------+---------+-----------+----------------------------------------------------------------------------------------+
+
+> coral-reward-watchtower@0.1.0 demo:join
+> coral sql "SELECT c.id, c.verdict, c.fit_score, e.evidence_type, e.confidence, a.owner, a.action_type, a.action FROM reward_signals.candidates c JOIN reward_signals.evidence e ON c.id = e.candidate_id JOIN reward_signals.actions a ON c.id = a.candidate_id WHERE c.verdict IN ('pursue', 'review') ORDER BY c.fit_score DESC, a.priority ASC, e.confidence DESC LIMIT 12"
+
++---------------------------+---------+-----------+---------------+------------+---------------+---------------+---------------------------------------------------------------------------------------+
+| id                        | verdict | fit_score | evidence_type | confidence | owner         | action_type   | action                                                                                |
++---------------------------+---------+-----------+---------------+------------+---------------+---------------+---------------------------------------------------------------------------------------+
+| harnessclaw-pr50          | pursue  | 93        | github-issue  | high       | account-owner | legal-unblock | Sign HarnessClaw CLA and re-run the license/cla check                                 |
+| harnessclaw-pr50          | pursue  | 93        | github-pr     | high       | account-owner | legal-unblock | Sign HarnessClaw CLA and re-run the license/cla check                                 |
+| harnessclaw-pr50          | pursue  | 93        | github-issue  | high       | agent         | monitor       | After CLA clears, monitor maintainer review and respond narrowly to requested changes |
+| harnessclaw-pr50          | pursue  | 93        | github-pr     | high       | agent         | monitor       | After CLA clears, monitor maintainer review and respond narrowly to requested changes |
+| coral-hackathon-showcase  | pursue  | 86        | event-page    | high       | account-owner | register      | Register for Pirates of the Coral-bean from the official WeMakeDevs page              |
+| coral-hackathon-showcase  | pursue  | 86        | event-page    | high       | agent         | polish        | Keep improving the Coral SQL join demo and evidence surface during the build window   |
+| coral-hackathon-showcase  | pursue  | 86        | event-page    | high       | account-owner | publish       | Post the GitHub Pages guide in Coral Discord #how-i-coral and one social platform     |
+| agent-academy-hackathon   | review  | 74        | event-page    | medium     | account-owner | account-check | Only proceed if Microsoft product and prize-account requirements are acceptable       |
+| open-collective-gift-card | review  | 52        | policy-page   | medium     | agent         | recheck       | Recheck later for open bounty-labeled issues with gift-card fallback                  |
++---------------------------+---------+-----------+---------------+------------+---------------+---------------+---------------------------------------------------------------------------------------+

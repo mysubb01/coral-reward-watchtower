@@ -93,3 +93,7 @@ https://github.com/mysubb01/coral-reward-watchtower/blob/main/docs/captains-log.
 GitHub Pages landing page:
 
 https://mysubb01.github.io/coral-reward-watchtower/
+
+Submission package release:
+
+https://github.com/mysubb01/coral-reward-watchtower/releases

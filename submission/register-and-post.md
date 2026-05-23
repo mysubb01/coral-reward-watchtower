@@ -10,6 +10,8 @@ Release package: https://github.com/mysubb01/coral-reward-watchtower/releases
 
 Showcase screenshot: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
 
+Final entry: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/final-entry.md
+
 ## Registration Notes
 
 Use the official registration link from the event page. Registration and prize delivery may require personal details, so the GitHub account owner should do this step directly.
@@ -23,6 +25,7 @@ Suggested project fields:
 - CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 - Release package: https://github.com/mysubb01/coral-reward-watchtower/releases
 - Screenshot: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
+- Final entry: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/final-entry.md
 - Short description: Local-first Coral project that ranks public reward, prize, and bounty leads with SQL so agents avoid spammy or legally blocked work.
 - Built with: Coral CLI, Coral custom JSONL source, SQL, Node.js
 - Demo command: `npm run demo`

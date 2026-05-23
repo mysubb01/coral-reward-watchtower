@@ -101,3 +101,7 @@ https://github.com/mysubb01/coral-reward-watchtower/releases
 Showcase screenshot:
 
 https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
+
+Final submission entry:
+
+https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/final-entry.md

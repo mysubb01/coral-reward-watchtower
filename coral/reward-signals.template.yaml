@@ -1,0 +1,40 @@
+name: reward_signals
+version: 0.1.0
+dsl_version: 3
+backend: jsonl
+test_queries:
+  - SELECT id, title FROM reward_signals.candidates LIMIT 1
+  - SELECT id, reward_type, fit_score FROM reward_signals.candidates WHERE verdict = 'pursue' ORDER BY fit_score DESC LIMIT 3
+tables:
+  - name: candidates
+    description: Reward candidates normalized for local-first agent triage
+    source:
+      location: file://__PROJECT_ROOT__/data/
+      glob: reward-signals.jsonl
+    columns:
+      - name: id
+        type: Utf8
+      - name: title
+        type: Utf8
+      - name: source_url
+        type: Utf8
+      - name: reward_type
+        type: Utf8
+      - name: reward_value
+        type: Utf8
+      - name: status
+        type: Utf8
+      - name: verdict
+        type: Utf8
+      - name: fit_score
+        type: Int64
+      - name: requires_account
+        type: Boolean
+      - name: requires_legal
+        type: Boolean
+      - name: deadline
+        type: Utf8
+      - name: risk
+        type: Utf8
+      - name: next_action
+        type: Utf8

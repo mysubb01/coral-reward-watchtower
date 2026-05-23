@@ -8,6 +8,8 @@ Shareable guide: https://mysubb01.github.io/coral-reward-watchtower/
 
 Release package: https://github.com/mysubb01/coral-reward-watchtower/releases
 
+Showcase screenshot: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
+
 ## Registration Notes
 
 Use the official registration link from the event page. Registration and prize delivery may require personal details, so the GitHub account owner should do this step directly.
@@ -20,6 +22,7 @@ Suggested project fields:
 - Guide: https://mysubb01.github.io/coral-reward-watchtower/
 - CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 - Release package: https://github.com/mysubb01/coral-reward-watchtower/releases
+- Screenshot: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
 - Short description: Local-first Coral project that ranks public reward, prize, and bounty leads with SQL so agents avoid spammy or legally blocked work.
 - Built with: Coral CLI, Coral custom JSONL source, SQL, Node.js
 - Demo command: `npm run demo`
@@ -33,6 +36,7 @@ Repo: https://github.com/mysubb01/coral-reward-watchtower
 Guide: https://mysubb01.github.io/coral-reward-watchtower/
 CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 Release package: https://github.com/mysubb01/coral-reward-watchtower/releases
+Screenshot: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
 
 The problem: public reward and bounty leads are noisy. Some are cash-only, token-based, account-gated, already crowded, or blocked by legal/user actions like CLA signing.
 
@@ -70,5 +74,6 @@ Repo: https://github.com/mysubb01/coral-reward-watchtower
 Guide: https://mysubb01.github.io/coral-reward-watchtower/
 CI proof: https://github.com/mysubb01/coral-reward-watchtower/actions/workflows/coral-demo.yml
 Release package: https://github.com/mysubb01/coral-reward-watchtower/releases
+Screenshot: https://github.com/mysubb01/coral-reward-watchtower/blob/main/submission/evidence/coral-reward-watchtower-showcase-20260523.png
 Demo: npm run demo
 ```

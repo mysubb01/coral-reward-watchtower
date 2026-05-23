@@ -27,6 +27,8 @@ The most important design choice is that the decision is inspectable. If a lead 
 
 For this run, the top live candidate remains a HarnessClaw pull request for a JD-card reward. It is open and mergeable, but blocked by a CLA that only the GitHub account owner can sign. The next ranked non-cash route is this Coral hackathon path itself, because the available rewards include hardware, a keyboard, and Claude Max vouchers rather than only cash or token payouts.
 
+The first version was prepared before the official May 25-31 build window, so the right submission path is to register, continue improving it during the window, then publish the final Captain's Log and showcase post with fresh verification output.
+
 Coral helped turn a messy "go find money" task into a queryable local decision surface. The result is not a magic bounty hunter. It is a small guardrail that keeps the agent from creating spam, fabricating payout confidence, or stepping across user-controlled legal/account boundaries.
 
 ## What Worked
@@ -42,4 +44,3 @@ Coral helped turn a messy "go find money" task into a queryable local decision s
 - Add a Discord/social-submission checklist table.
 - Add a verifier that fails any candidate with missing payout terms.
 - Add an MCP prompt that forces agents to query Coral before commenting on reward issues.
-

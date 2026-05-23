@@ -26,7 +26,7 @@ The current top live candidate is still the HarnessClaw PR:
 - State: open and mergeable
 - Blocker: CLA must be signed by the GitHub account owner
 
-This project adds a second, non-cash route: Coral hackathon submission assets for hardware, vouchers, or showcase rewards.
+This project adds a second, non-cash route: Coral hackathon submission assets for hardware, vouchers, or showcase rewards. The current official WeMakeDevs page lists the build window as May 25-31, 2026.
 
 ## Install
 
@@ -70,8 +70,7 @@ Pirates of the Coral-bean has non-cash/hardware/voucher paths:
 
 - Best Enterprise Agent: MacBook Neo
 - Best Personal Agent: iPad
-- Captain's Log: Keychron Keyboard
-- Showcase Reward: Claude Max vouchers
+- Captain's Log: Keychron mechanical keyboard
+- Showcase Reward: Claude Max 5x 1-month vouchers for the best 50 showcases
 
 This project is strongest for the Captain's Log or Showcase lane because it is small, practical, and directly demonstrates why SQL-shaped agent data beats ad hoc wrappers.
-

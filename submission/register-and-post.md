@@ -4,6 +4,8 @@ Official event page: https://www.wemakedevs.org/hackathons/coral
 
 Public project repo: https://github.com/mysubb01/coral-reward-watchtower
 
+Shareable guide: https://mysubb01.github.io/coral-reward-watchtower/
+
 ## Registration Notes
 
 Use the official registration link from the event page. Registration and prize delivery may require personal details, so the GitHub account owner should do this step directly.
@@ -13,6 +15,7 @@ Suggested project fields:
 - Project name: Coral Reward Watchtower
 - Track: Personal Agent, or Captain's Log / Showcase special bounty
 - Repo: https://github.com/mysubb01/coral-reward-watchtower
+- Guide: https://mysubb01.github.io/coral-reward-watchtower/
 - Short description: Local-first Coral project that ranks public reward, prize, and bounty leads with SQL so agents avoid spammy or legally blocked work.
 - Built with: Coral CLI, Coral custom JSONL source, SQL, Node.js
 - Demo command: `npm run demo`
@@ -23,6 +26,7 @@ Suggested project fields:
 I built Coral Reward Watchtower, a local-first reward triage layer for agents.
 
 Repo: https://github.com/mysubb01/coral-reward-watchtower
+Guide: https://mysubb01.github.io/coral-reward-watchtower/
 
 The problem: public reward and bounty leads are noisy. Some are cash-only, token-based, account-gated, already crowded, or blocked by legal/user actions like CLA signing.
 
@@ -55,6 +59,6 @@ Built Coral Reward Watchtower for the Coral hackathon:
 A local-first reward triage layer that exposes public bounty/prize leads as a Coral SQL table, so agents can rank real opportunities and avoid spammy, cash-only, crowded, or legally blocked tasks.
 
 Repo: https://github.com/mysubb01/coral-reward-watchtower
+Guide: https://mysubb01.github.io/coral-reward-watchtower/
 Demo: npm run demo
 ```
-

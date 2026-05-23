@@ -61,6 +61,7 @@ npm run rank
 - `sql/triage.sql`: example Coral SQL query
 - `scripts/generate-coral-spec.mjs`: creates the local Coral spec
 - `scripts/rank-candidates.mjs`: fallback ranker without Coral
+- `docs/captains-log.md`: shareable end-to-end build guide
 - `submission/captains-log.md`: ready-to-post hackathon write-up
 - `submission/demo-script.md`: short demo recording script
 
@@ -74,3 +75,13 @@ Pirates of the Coral-bean has non-cash/hardware/voucher paths:
 - Showcase Reward: Claude Max 5x 1-month vouchers for the best 50 showcases
 
 This project is strongest for the Captain's Log or Showcase lane because it is small, practical, and directly demonstrates why SQL-shaped agent data beats ad hoc wrappers.
+
+## Shareable Guide
+
+Captain's Log guide:
+
+https://github.com/mysubb01/coral-reward-watchtower/blob/main/docs/captains-log.md
+
+GitHub Pages landing page:
+
+https://mysubb01.github.io/coral-reward-watchtower/
